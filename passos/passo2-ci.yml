@@ -1,0 +1,43 @@
+# Nome que aparece na aba "Actions" do repositorio.
+name: CI
+
+# QUANDO este workflow roda.
+on:
+  push:
+    branches: [main]      # todo push direto na main
+  pull_request:           # e todo PR aberto contra qualquer branch
+
+jobs:
+  # "test" e o id do job. Aparece como nome do check no PR.
+  test:
+    # A maquina virtual que o GitHub cria do zero para nos, de graca.
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Baixa o codigo do repositorio para dentro da maquina virtual.
+      #    Sem isso, a maquina esta vazia.
+      - name: Baixar o codigo
+        uses: actions/checkout@v4
+
+      # 2. Instala o Node na versao que queremos e liga o cache do npm,
+      #    que reaproveita o download das dependencias entre execucoes.
+      - name: Instalar o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      # 3. npm ci (nao npm install): instala exatamente o que esta no
+      #    package-lock.json. E mais rapido e nao muda o lock sozinho.
+      - name: Instalar dependencias
+        run: npm ci
+
+      # 4. Checagem de tipos. Pega erro de TypeScript mesmo que
+      #    ninguem tenha rodado o build na maquina local.
+      - name: Checar tipos
+        run: npm run typecheck
+
+      # 5. Os testes. Se este comando terminar com erro,
+      #    o job fica vermelho e o PR fica bloqueado.
+      - name: Rodar os testes
+        run: npm test
