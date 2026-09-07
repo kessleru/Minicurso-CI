@@ -7,7 +7,6 @@ app.use(express.json());
 
 app.post("/calcular", (req, res) => {
   const { valor, descontoPercentual } = req.body;
-  const naoUsada = 42;
 
   try {
     const precoFinal = calcularPrecoFinal(valor, descontoPercentual);
