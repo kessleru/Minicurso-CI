@@ -1,5 +1,5 @@
 # Nome que aparece na aba "Actions" do repositorio.
-name: CI
+name: Test
 
 # QUANDO este workflow roda.
 on:

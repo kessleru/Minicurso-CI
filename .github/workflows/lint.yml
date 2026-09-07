@@ -1,0 +1,33 @@
+# Segundo workflow, separado do ci.yml de proposito: assim ele aparece
+# como um check independente no PR ("lint" ao lado de "test"), e um
+# problema de estilo nao se confunde com um teste quebrado no log.
+name: Lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  # Id do job = nome do check exigido na protecao de branch,
+  # igual fizemos com "test" no ci.yml.
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar o Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      # ESLint aponta variavel nao usada, import solto, etc.
+      # Diferente do "test": aqui o codigo RODA, so esta mal escrito.
+      - name: Rodar o lint
+        run: npm run lint
