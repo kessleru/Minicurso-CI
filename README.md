@@ -1,4 +1,6 @@
 # Minicurso de CI com GitHub Actions
+![Test](https://github.com/kessleru/Minicurso-CI/actions/workflows/test.yml/badge.svg)
+![Lint](https://github.com/kessleru/Minicurso-CI/actions/workflows/lint.yml/badge.svg)
 
 API mínima em Express + TypeScript usada como exemplo do minicurso. Uma rota,
 uma função de cálculo, dois arquivos de teste. É tudo.
