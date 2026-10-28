@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      /* Catppuccin Mocha, as mesmas cores do site */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        width: 1200px; height: 630px; overflow: hidden;
+        background: #1e1e2e; color: #cdd6f4;
+        font-family: 'JetBrains Mono', monospace;
+        display: grid; grid-template-columns: 1fr 430px; gap: 56px;
+        padding: 70px 72px;
+      }
+      .path { color: #a6e3a1; font-size: 24px; font-weight: 500; }
+      .path b { color: #9399b2; font-weight: 400; }
+      h1 { margin-top: 26px; font-size: 60px; font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; }
+      .sub { margin-top: 24px; font-size: 24px; line-height: 1.45; color: #a6adc8; }
+      .sub code { color: #f9e2af; }
+      .autor { position: absolute; left: 72px; bottom: 64px; font-size: 22px; color: #9399b2; }
+      .autor b { color: #cdd6f4; font-weight: 700; }
+      .pr { align-self: center; border: 2px solid #313244; border-radius: 18px; background: #181825; padding: 26px; display: grid; gap: 16px; }
+      .pr h2 { font-size: 18px; color: #9399b2; font-weight: 500; }
+      .check { display: flex; align-items: center; gap: 14px; border: 2px solid #313244; border-radius: 12px; padding: 14px 16px; font-size: 20px; }
+      .dot { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 18px; color: #11111b; flex: none; }
+      .x { background: #f38ba8; } .ok { background: #a6e3a1; }
+      .check small { margin-left: auto; color: #9399b2; font-size: 16px; }
+      .merge { margin-top: 4px; border-radius: 12px; padding: 14px; text-align: center; font-weight: 700; font-size: 20px; background: #a6e3a1; color: #11111b; }
+    </style>
+  </head>
+  <body>
+    <div>
+      <p class="path">kessleru.com.br<b>/ci</b></p>
+      <h1>Integração Contínua com GitHub Actions</h1>
+      <p class="sub">Material de apoio do minicurso: do primeiro <code>ci.yml</code> ao check que bloqueia o merge.</p>
+      <p class="autor"><b>Otávio Kessler Ustra</b> · Node.js e Python</p>
+    </div>
+    <div class="pr">
+      <h2>pull request · checks</h2>
+      <div class="check"><span class="dot x">✕</span>test<small>com o bug</small></div>
+      <div class="check"><span class="dot ok">✓</span>test<small>corrigido</small></div>
+      <div class="merge">Merge pull request</div>
+    </div>
+  </body>
+</html>
