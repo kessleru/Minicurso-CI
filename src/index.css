@@ -75,9 +75,10 @@
   --color-ctp-mantle: var(--ctp-mantle);
   --color-ctp-crust: var(--ctp-crust);
   --color-ctp-accent: var(--ctp-accent);
+  /* Roboto, a fonte de leitura do design system (como no portfólio); enquanto baixa, a do sistema */
   --font-sans:
-    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+    Roboto, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue',
+    Arial, sans-serif;
   --font-mono:
     'JetBrains Mono', ui-monospace, Menlo, 'DejaVu Sans Mono', monospace;
 }
