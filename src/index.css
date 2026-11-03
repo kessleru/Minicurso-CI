@@ -206,36 +206,18 @@
 
 @layer components {
   /* ---------- Botão de tecla (key) ----------
-     O botão é uma tecla: a face (::before) fica por cima da lateral (::after), que aparece embaixo.
-     Ao pressionar, o botão inteiro desce e a lateral sobe o mesmo tanto: a face afunda e a lateral
-     some, como uma keycap. Só translate anima; a descida é rápida e a volta, um pouco mais lenta.
-     Botões de alternância (aria-pressed) ficam afundados enquanto estão ligados.
-     Variantes: key--accent (principal) e key--flat (versão simples: lateral menor, sem brilho).
+     Uma regra para toda tecla, em todos os temas: face lisa, borda de 1px e, embaixo, a lateral
+     na mesma cor da borda (como uma keycap vista de frente). Só as cores mudam entre neutra e
+     destaque. Ao pressionar, o botão desce e a lateral sobe o mesmo tanto: a face afunda.
+     Só translate anima; a descida é rápida e a volta, um pouco mais lenta. Alternâncias ligadas
+     (aria-pressed) ficam afundadas. key--flat é a versão simples: lateral menor, face no fundo.
      Fica na camada components para as utilidades do Tailwind (tamanho de fonte, raio, largura)
      poderem ajustar a tecla; o respiro interno muda por --key-px e --key-py, sem perder a lateral. */
   .key {
     --key-depth: 4px;
-    /* temas escuros: face clara em degradê (luz de cima), lateral num tom entre a face e o
-       fundo e uma sombra curta que assenta a tecla. Com a lateral quase preta, ela sumia no
-       fundo escuro e a tecla parecia chapada. */
-    --key-face: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--ctp-surface-2) 55%, var(--ctp-surface-1)),
-      var(--ctp-surface-1)
-    );
-    --key-face-hover: linear-gradient(
-      to bottom,
-      var(--ctp-surface-2),
-      color-mix(in srgb, var(--ctp-surface-2) 40%, var(--ctp-surface-1))
-    );
-    --key-edge: linear-gradient(
-      to bottom,
-      var(--ctp-surface-0),
-      color-mix(in srgb, var(--ctp-surface-0) 60%, var(--ctp-crust))
-    );
-    --key-rim: color-mix(in srgb, var(--ctp-text) 10%, transparent);
-    --key-shine: color-mix(in srgb, var(--ctp-text) 22%, transparent);
-    --key-drop: 0 2px 4px color-mix(in srgb, var(--ctp-crust) 70%, transparent);
+    --key-face: var(--ctp-surface-0);
+    --key-face-hover: color-mix(in srgb, var(--ctp-surface-1) 45%, var(--ctp-surface-0));
+    --key-line: var(--ctp-surface-1);
     position: relative;
     isolation: isolate;
     display: inline-flex;
@@ -271,8 +253,8 @@
     top: 0;
     bottom: var(--key-depth);
     background: var(--key-face);
-    border: 1px solid var(--key-rim);
-    box-shadow: inset 0 1px 0 var(--key-shine);
+    border: 1px solid var(--key-line);
+    transition: background-color 150ms ease;
   }
 
   /* lateral */
@@ -280,8 +262,7 @@
     z-index: -2;
     top: var(--key-depth);
     bottom: 0;
-    background: var(--key-edge);
-    box-shadow: var(--key-drop);
+    background: var(--key-line);
     transition: translate 160ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
@@ -319,25 +300,11 @@
     }
   }
 
-  /* principal e alternância ligada: face tingida com o destaque */
+  /* destaque e alternância ligada: as mesmas peças tingidas com o acento */
   .key:is(.key--accent, [aria-pressed='true']) {
-    --key-face: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--ctp-accent) 30%, var(--ctp-surface-1)),
-      color-mix(in srgb, var(--ctp-accent) 20%, var(--ctp-surface-1))
-    );
-    --key-face-hover: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--ctp-accent) 40%, var(--ctp-surface-1)),
-      color-mix(in srgb, var(--ctp-accent) 28%, var(--ctp-surface-1))
-    );
-    --key-edge: linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--ctp-accent) 34%, var(--ctp-surface-0)),
-      color-mix(in srgb, var(--ctp-accent) 22%, var(--ctp-crust))
-    );
-    --key-rim: color-mix(in srgb, var(--ctp-accent) 45%, transparent);
-    --key-shine: color-mix(in srgb, var(--ctp-accent) 45%, transparent);
+    --key-face: color-mix(in srgb, var(--ctp-accent) 14%, var(--ctp-surface-0));
+    --key-face-hover: color-mix(in srgb, var(--ctp-accent) 22%, var(--ctp-surface-0));
+    --key-line: color-mix(in srgb, var(--ctp-accent) 50%, var(--ctp-surface-1));
     color: var(--ctp-accent);
   }
 
@@ -347,39 +314,31 @@
     }
   }
 
-  /* Latte: tecla clara sobre o card, lateral cinza (o crust do claro é mais claro que o surface) */
+  /* tema claro: face clara sobre o card */
   [data-theme='light'] .key {
-    --key-drop: none;
     --key-face: var(--ctp-base);
     --key-face-hover: color-mix(in srgb, var(--ctp-surface-0) 45%, var(--ctp-base));
-    --key-edge: var(--ctp-surface-1);
-    --key-rim: var(--ctp-surface-1);
-    --key-shine: transparent;
+    --key-line: var(--ctp-surface-1);
   }
 
   [data-theme='light'] .key:is(.key--accent, [aria-pressed='true']) {
     --key-face: color-mix(in srgb, var(--ctp-accent) 12%, var(--ctp-base));
     --key-face-hover: color-mix(in srgb, var(--ctp-accent) 20%, var(--ctp-base));
-    --key-edge: color-mix(in srgb, var(--ctp-accent) 45%, var(--ctp-surface-1));
-    --key-rim: color-mix(in srgb, var(--ctp-accent) 55%, transparent);
+    --key-line: color-mix(in srgb, var(--ctp-accent) 50%, var(--ctp-surface-1));
   }
 
-  /* versão simples: mesma tecla, mais rasa e sem brilho, sobre o fundo da página */
+  /* versão simples: a mesma tecla, mais rasa, com a face no fundo da página */
   .key.key--flat {
     --key-depth: 3px;
-    --key-drop: none;
     --key-face: var(--ctp-base);
     --key-face-hover: var(--ctp-mantle);
-    --key-edge: var(--ctp-surface-1);
-    --key-rim: var(--ctp-surface-1);
-    --key-shine: transparent;
+    --key-line: var(--ctp-surface-1);
   }
 
   .key.key--flat:is(.key--accent, [aria-pressed='true']) {
     --key-face: color-mix(in srgb, var(--ctp-accent) 10%, var(--ctp-base));
     --key-face-hover: color-mix(in srgb, var(--ctp-accent) 18%, var(--ctp-base));
-    --key-edge: color-mix(in srgb, var(--ctp-accent) 40%, var(--ctp-surface-1));
-    --key-rim: color-mix(in srgb, var(--ctp-accent) 50%, transparent);
+    --key-line: color-mix(in srgb, var(--ctp-accent) 45%, var(--ctp-surface-1));
   }
 }
 
