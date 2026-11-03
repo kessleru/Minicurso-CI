@@ -164,3 +164,42 @@
 .nav-link:hover::after {
   opacity: 1;
 }
+
+/* ---------- Latte (data-theme='light'): acento nunca é cor de texto pequeno (decisão 2026-11-02) ----------
+   No Latte só mauve e red passam 4,5:1 como texto; as outras 12 cores de destaque não.
+   Regra: o texto vira ctp-text e o acento fica na borda, no fundo tingido, no sublinhado ou no ícone.
+   Ícones (svg) e controles só de ícone (com aria-label) ficam como estão. */
+[data-theme='light'] :is(.text-ctp-accent, .text-ctp-rosewater, .text-ctp-flamingo, .text-ctp-pink, .text-ctp-mauve, .text-ctp-red, .text-ctp-maroon, .text-ctp-peach, .text-ctp-yellow, .text-ctp-green, .text-ctp-teal, .text-ctp-sky, .text-ctp-sapphire, .text-ctp-blue, .text-ctp-lavender):not(svg, [aria-label]) {
+  color: var(--ctp-text);
+}
+[data-theme='light'] .text-ctp-accent > svg {
+  color: var(--ctp-accent);
+}
+/* onde o acento marcava identidade (logo, título), ele vira sublinhado de 2px */
+[data-theme='light'] :is(header a, h1) .text-ctp-accent {
+  text-decoration: underline 2px var(--ctp-accent);
+  text-underline-offset: 3px;
+}
+@media (hover: hover) and (pointer: fine) {
+  [data-theme='light'] .hover\:text-ctp-accent:hover:not(svg, [aria-label], :disabled) {
+    color: var(--ctp-text);
+    text-decoration: underline 2px var(--ctp-accent);
+    text-underline-offset: 3px;
+  }
+}
+/* código de exemplo: a cor da sintaxe entra misturada ao ctp-text (35%), para seguir legível e passar 4,5:1 */
+[data-theme='light'] .syn.text-ctp-mauve {
+  color: color-mix(in srgb, var(--ctp-mauve) 35%, var(--ctp-text));
+}
+[data-theme='light'] .syn.text-ctp-blue {
+  color: color-mix(in srgb, var(--ctp-blue) 35%, var(--ctp-text));
+}
+[data-theme='light'] .syn.text-ctp-green {
+  color: color-mix(in srgb, var(--ctp-green) 35%, var(--ctp-text));
+}
+[data-theme='light'] .syn.text-ctp-peach {
+  color: color-mix(in srgb, var(--ctp-peach) 35%, var(--ctp-text));
+}
+[data-theme='light'] .syn.text-ctp-lavender {
+  color: color-mix(in srgb, var(--ctp-lavender) 35%, var(--ctp-text));
+}

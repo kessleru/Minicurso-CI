@@ -105,7 +105,7 @@ export function CheckSimulation({ t }: { t: Track }) {
   let total = 0;
   const steps = t.run.map(([name, sec], k) => {
     let icon = '○';
-    let color = 'text-ctp-surface-2';
+    let color = 'text-ctp-meta';
     let time = '';
     let nameColor = 'text-ctp-subtext-0';
     if (run) {

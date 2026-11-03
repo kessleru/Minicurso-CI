@@ -4,11 +4,11 @@ import type { Lang } from './content';
 export type Seg = { t: string; c: string };
 
 const C = {
-  kw: 'text-ctp-mauve',
-  fn: 'text-ctp-blue',
-  str: 'text-ctp-green',
-  num: 'text-ctp-peach',
-  key: 'text-ctp-lavender',
+  kw: 'syn text-ctp-mauve',
+  fn: 'syn text-ctp-blue',
+  str: 'syn text-ctp-green',
+  num: 'syn text-ctp-peach',
+  key: 'syn text-ctp-lavender',
   com: 'text-ctp-meta italic',
   pr: 'text-ctp-accent',
   tx: 'text-ctp-text',
