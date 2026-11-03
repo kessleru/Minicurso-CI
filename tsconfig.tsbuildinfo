@@ -1,1 +1,1 @@
-{"root":["./src/App.tsx","./src/cn.ts","./src/content.ts","./src/highlight.tsx","./src/main.tsx","./src/useCopy.ts","./src/components/Practice.tsx","./src/components/Workflow.tsx","./src/components/ui.tsx","./vite.config.ts"],"version":"5.9.3"}
+{"root":["./src/App.tsx","./src/cn.ts","./src/confetti.ts","./src/content.ts","./src/highlight.tsx","./src/main.tsx","./src/useCopy.ts","./src/components/Practice.tsx","./src/components/Workflow.tsx","./src/components/ui.tsx","./src/lib/cursor.ts","./src/lib/smooth.ts","./vite.config.ts"],"version":"5.9.3"}

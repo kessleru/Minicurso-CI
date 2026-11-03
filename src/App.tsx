@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Moon, Sun } from 'lucide-react';
 import { NODE, PY, REPO_NODE, REPO_PY } from './content';
 import { Line } from './highlight';
-import { cn } from './cn';
 import { useCopy, useStored } from './useCopy';
 import { CodeBlock, CopyButton, Section, Toggle } from './components/ui';
 import { CheckSimulation, WorkflowFile } from './components/Workflow';
@@ -176,10 +175,8 @@ function App() {
                   type="button"
                   aria-pressed={on}
                   onClick={() => setTrack(item.id)}
-                  className={cn(
-                    'cursor-pointer space-y-2 rounded-xl border p-4 text-left transition-colors sm:p-5',
-                    on ? 'border-ctp-accent/60 bg-ctp-accent/5' : 'border-ctp-surface-0 hover:border-ctp-surface-2'
-                  )}
+                  // cada trilha é uma tecla: a escolhida fica afundada
+                  className="key key--flat flex-col items-stretch justify-start gap-2 rounded-xl text-left font-normal [--key-px:1rem] [--key-py:1rem] sm:[--key-px:1.25rem] sm:[--key-py:1.25rem]"
                 >
                   <span className="flex items-center justify-between font-mono text-xs">
                     <span className="text-ctp-subtext-0">{item.name}</span>
