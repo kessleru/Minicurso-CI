@@ -341,23 +341,3 @@
     --key-line: color-mix(in srgb, var(--ctp-accent) 45%, var(--ctp-surface-1));
   }
 }
-
-/* ---------- Cursor de seta estilo Figma (src/lib/cursor.ts) ----------
-   Só com mouse. Tudo herda a seta, inclusive links e botões, como no Figma;
-   campos de texto mantêm a barra de digitar. */
-@media (hover: hover) and (pointer: fine) {
-  html[data-cursor],
-  html[data-cursor] *,
-  html[data-cursor] *::before,
-  html[data-cursor] *::after {
-    cursor: var(--cursor-arrow);
-  }
-
-  html[data-cursor] :is(input:not([type='checkbox'], [type='radio'], [type='range']), textarea, [contenteditable='true']) {
-    cursor: text;
-  }
-
-  html[data-cursor] :disabled {
-    cursor: not-allowed;
-  }
-}
